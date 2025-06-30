@@ -33,9 +33,13 @@ public class SecurityConfig {
         .csrf(csrf -> csrf.disable())
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-        .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .sessionManagement(
+            sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS) //
+        )
         .authenticationProvider(authenticationProvider())
-        .authorizeHttpRequests(auth -> auth.requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated())
+        .authorizeHttpRequests(
+            auth -> auth.requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated() //
+        )
         .build();
   }
 
