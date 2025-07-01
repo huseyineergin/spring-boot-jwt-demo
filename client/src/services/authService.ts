@@ -1,5 +1,6 @@
 import { AuthRequest, AuthResponse } from "@/types/auth";
 import { ErrorResponse } from "@/types/error";
+import { cookies } from "next/headers";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -38,5 +39,22 @@ export const authService = {
 
     const data: AuthResponse = await response.json();
     return data;
+  },
+
+  async signOut(): Promise<void> {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("authToken")?.value;
+
+    const response = await fetch(`${API_URL}/auth/signOut`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error: ErrorResponse = await response.json();
+      throw new Error(error.message);
+    }
   },
 };
