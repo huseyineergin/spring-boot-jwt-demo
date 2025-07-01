@@ -19,7 +19,7 @@ export default function UserInfo({ result }: { result: string }) {
       <div className="w-full max-w-md p-4 border">
         <h1 className="text-2xl text-center font-bold mb-4">Me</h1>
         <div className="text-center">Welcome {result}!</div>
-        <button onClick={handleSignOut} className="w-full p-1 mt-2 border">
+        <button onClick={handleSignOut} className="w-full p-1 mt-2 border hover:cursor-pointer">
           Sign Out
         </button>
         {!error.message && <p className="text-red-500 text-center">{error.message}</p>}

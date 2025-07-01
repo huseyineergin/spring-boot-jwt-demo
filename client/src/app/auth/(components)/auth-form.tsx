@@ -35,11 +35,11 @@ export default function AuthForm() {
       </div>
 
       <div className="flex gap-x-2">
-        <button formAction={handleSignIn} type="submit" className="flex-1 p-1 border">
+        <button formAction={handleSignIn} type="submit" className="flex-1 p-1 border hover:cursor-pointer">
           Sign In
         </button>
 
-        <button formAction={handleSignUp} type="submit" className="flex-1 p-1 border">
+        <button formAction={handleSignUp} type="submit" className="flex-1 p-1 border hover:cursor-pointer">
           Sign Up
         </button>
       </div>
