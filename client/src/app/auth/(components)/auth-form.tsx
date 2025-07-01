@@ -10,13 +10,13 @@ export default function AuthForm() {
 
   async function handleSignIn(formData: FormData) {
     const result = await signInAction(formData);
-    if (result) setError(result);
+    if (result) return setError(result);
     router.push("/me");
   }
 
   async function handleSignUp(formData: FormData) {
     const result = await signUpAction(formData);
-    if (result) setError(result);
+    if (result) return setError(result);
     router.push("/me");
   }
 
