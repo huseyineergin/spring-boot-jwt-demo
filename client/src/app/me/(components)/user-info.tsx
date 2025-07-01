@@ -5,7 +5,7 @@ import { useState } from "react";
 import { signOutAction } from "../actions";
 
 export default function UserInfo({ result }: { result: string }) {
-  const [error, setError] = useState<{ message: string }>({ message: "" });
+  const [error, setError] = useState({ message: "" });
   const router = useRouter();
 
   async function handleSignOut() {
