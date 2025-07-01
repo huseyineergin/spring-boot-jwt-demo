@@ -13,6 +13,7 @@ import com.example.server.dto.response.AuthResponse;
 import com.example.server.entity.User;
 import com.example.server.expection.UsernameTakenException;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -22,6 +23,7 @@ public class AuthService {
   private final JwtService jwtService;
   private final UserService userService;
   private final UserTokenService userTokenService;
+  private final HttpServletRequest httpServletRequest;
   private final AuthenticationManager authenticationManager;
 
   public AuthResponse signUp(AuthRequest request) {
@@ -52,6 +54,13 @@ public class AuthService {
     userTokenService.saveUserToken(request.getUsername(), token, ttl);
 
     return AuthResponse.builder().token(token).build();
+  }
+
+  public void signOut() {
+    String token = httpServletRequest.getHeader("Authorization").substring(7);
+    String username = jwtService.extractUsername(token);
+    userTokenService.revokeTokenForUser(username);
+    userTokenService.revokeToken(token);
   }
 
 }

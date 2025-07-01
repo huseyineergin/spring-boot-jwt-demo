@@ -32,4 +32,10 @@ public class AuthController {
     return ResponseEntity.status(HttpStatus.OK).body(response);
   }
 
+  @PostMapping("/signOut")
+  public ResponseEntity<Void> signOut() {
+    authService.signOut();
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+
 }
