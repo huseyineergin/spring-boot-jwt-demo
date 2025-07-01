@@ -43,9 +43,11 @@ public class UserTokenService {
     redisTemplate.opsForValue().set(JWT_TOKEN_PREFIX + token, "PASSIVE");
   }
 
-  public boolean isTokenActive(String token) {
-    String status = redisTemplate.opsForValue().get(JWT_TOKEN_PREFIX + token);
-    return "ACTIVE".equals(status);
+  public boolean isTokenValid(String token) {
+    String key = JWT_TOKEN_PREFIX + token;
+    Long ttl = redisTemplate.getExpire(key);
+    String status = redisTemplate.opsForValue().get(key);
+    return "ACTIVE".equals(status) && (ttl == null || ttl > 0);
   }
 
 }

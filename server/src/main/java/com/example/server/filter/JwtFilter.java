@@ -43,7 +43,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
       final String token = authHeader.substring(7);
 
-      if (!userTokenService.isTokenActive(token)) {
+      if (!userTokenService.isTokenValid(token)) {
         throw new TokenInvalidException("Invalid token.");
       }
 
