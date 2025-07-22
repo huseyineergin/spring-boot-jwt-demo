@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: server
+  datasource:
+    url: jdbc:mariadb://localhost:3306/demo_db
+    password: b83H%4oeBi3*Sy
+    username: demo_user
+  redis:
+    host: localhost
+    port: 6379
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MariaDBDialect
+
+jwt:
+  secret: a7futGR!w9Un^L6T3Aa9b%!MPfjTH6*!
+  expiration: 600000 # 10 Minutes
